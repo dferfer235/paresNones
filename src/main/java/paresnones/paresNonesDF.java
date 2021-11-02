@@ -13,14 +13,15 @@ public class paresNonesDF {
         boolean j1Pares = true, j2Pares = true;
         int paresNones;
         String paresNonesS;
+        String dedosTexto;
 
-        boolean repetirJuego = true;
+        boolean repetirJuego = true, repetirDato = true;
 
         Random jugadorAleatorio = new Random();
 
         System.out.println("Bienvenido a Pares o Nones");
 
-        JOptionPane.showMessageDialog(null, "Un jugador escojerá pares o nones");
+        JOptionPane.showMessageDialog(null, "Un jugador aleatorio tendra que elegir pares o nones");
 
         do {
             int jugadorElegido = jugadorAleatorio.nextInt(2) + 1;
@@ -63,13 +64,30 @@ public class paresNonesDF {
                     break;
             }
 
-            String dedosTexto = JOptionPane.showInputDialog(null,
-                    "Jugador 1, escribe los dedos que vas a sacar");
-            dedosJ1 = Integer.parseInt(dedosTexto);
+            do {
+                dedosTexto = JOptionPane.showInputDialog(null,
+                        "Jugador 1, escribe los dedos que vas a sacar");
+                dedosJ1 = Integer.parseInt(dedosTexto);
+                if (dedosJ1 <= 0 || dedosJ1 >= 10) {
+                    JOptionPane.showMessageDialog(null, "Los dedos de Jugador 1 no son validos\n"
+                            + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                } else {
+                    repetirDato = false;
+                }
+            } while (repetirDato);
+            repetirDato = true;
 
-            dedosTexto = JOptionPane.showInputDialog(null,
-                    "Jugador 2, escribe los dedos que vas a sacar");
-            dedosJ2 = Integer.parseInt(dedosTexto);
+            do {
+                dedosTexto = JOptionPane.showInputDialog(null,
+                        "Jugador 2, escribe los dedos que vas a sacar");
+                dedosJ2 = Integer.parseInt(dedosTexto);
+                if (dedosJ2 <= 0 || dedosJ2 >= 10) {
+                    JOptionPane.showMessageDialog(null, "Los dedos de Jugador 2 no son validos\n"
+                            + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                } else {
+                    repetirDato = false;
+                }
+            } while (repetirDato);
 
             int totalDedos = dedosJ1 + dedosJ2;
 
@@ -83,7 +101,7 @@ public class paresNonesDF {
                     + "1-. Si\n"
                     + "2-. No");
             int seleccion = Integer.parseInt(seleccionRepeticion);
-            
+
             if (seleccion == 2) {
                 repetirJuego = false;
                 System.out.println("Saliendo...");
