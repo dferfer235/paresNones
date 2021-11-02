@@ -12,12 +12,14 @@ public class paresNonesDF {
         int dedosJ1, dedosJ2;
         boolean j1Pares = true;
         int paresNones;
-        String paresNonesS;
-        String dedosTexto;
+        int totalDedos;
+        String paresNonesS, dedosTexto, seleccionRepeticion;
+        int seleccion;
+        
 
         boolean repetirJuego = true, repetirDato = true;
 
-        Random jugadorAleatorio = new Random();
+        Random nAleatorio = new Random();
 
         System.out.println("Bienvenido a Pares o Nones");
 
@@ -32,7 +34,7 @@ public class paresNonesDF {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Un jugador aleatorio tendra que elegir pares o nones");
 
-                    int jugadorElegido = jugadorAleatorio.nextInt(2) + 1;
+                    int jugadorElegido = nAleatorio.nextInt(2) + 1;
                     //Numero aleatorio que escoje un numero aleatorio que sea 1 o 2
 
                     //El numero se utiliza en el switch para que el jugador elegido 
@@ -101,7 +103,7 @@ public class paresNonesDF {
                         }
                     } while (repetirDato);
 
-                    int totalDedos = dedosJ1 + dedosJ2;
+                    totalDedos = dedosJ1 + dedosJ2;
 
                     //En la condicion de este ifelse se comprueba si el jugador 1 ha escogido pares
                     //Y si el modulo de la suma total de dedos es 0
@@ -113,11 +115,11 @@ public class paresNonesDF {
                         JOptionPane.showMessageDialog(null, "!Jugador 2 ha ganado!");
                     }
 
-                    String seleccionRepeticion = JOptionPane.showInputDialog(null,
+                    seleccionRepeticion = JOptionPane.showInputDialog(null,
                             "¿Quieres jugar otra ronda?\n"
                             + "1-. Si\n"
                             + "2-. No");
-                    int seleccion = Integer.parseInt(seleccionRepeticion);
+                    seleccion = Integer.parseInt(seleccionRepeticion);
 
                     if (seleccion == 2) {
                         repetirJuego = false;
@@ -139,7 +141,42 @@ public class paresNonesDF {
                     } else {
                         j1Pares = false;
                     }
-                    
+
+                    do {
+                        dedosTexto = JOptionPane.showInputDialog(null,
+                                "Jugador, escribe los dedos que vas a sacar");
+                        dedosJ1 = Integer.parseInt(dedosTexto);
+                        if (dedosJ1 <= 0 || dedosJ1 >= 10) {
+                            JOptionPane.showMessageDialog(null, "Los dedos no son validos\n"
+                                    + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                        } else {
+                            repetirDato = false;
+                        }
+                    } while (repetirDato);
+
+                    dedosJ2 = nAleatorio.nextInt(10) + 0;
+
+                    totalDedos = dedosJ1 + dedosJ2;
+
+                    if (j1Pares == true && totalDedos % 2 == 0) {
+                        JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
+                    } else if (j1Pares == false && totalDedos % 2 != 0) {
+                        JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "!La maquina ha ganado!");
+                    }
+
+                    seleccionRepeticion = JOptionPane.showInputDialog(null,
+                            "¿Quieres jugar otra ronda?\n"
+                            + "1-. Si\n"
+                            + "2-. No");
+                    seleccion = Integer.parseInt(seleccionRepeticion);
+
+                    if (seleccion == 2) {
+                        repetirJuego = false;
+                        System.out.println("Saliendo...");
+                    }
+
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "La opcion no es valida");
