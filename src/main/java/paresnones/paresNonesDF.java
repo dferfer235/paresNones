@@ -22,13 +22,12 @@ public class paresNonesDF {
 
         System.out.println("Bienvenido a Pares o Nones");
 
-        String seleccionTexto = JOptionPane.showInputDialog(null,
-                "¿Como deseas jugar?\n"
-                + "1-. Jugar contra otro jugador\n"
-                + "2-. Jugar contra la maquina");
-        int seleccionJugador = Integer.parseInt(seleccionTexto);
-
         do {
+            String seleccionTexto = JOptionPane.showInputDialog(null,
+                    "¿Como deseas jugar?\n"
+                    + "1-. Jugar contra otro jugador\n"
+                    + "2-. Jugar contra la maquina");
+            int seleccionJugador = Integer.parseInt(seleccionTexto);
             switch (seleccionJugador) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Un jugador aleatorio tendra que elegir pares o nones");
@@ -82,20 +81,20 @@ public class paresNonesDF {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador 1, escribe los dedos que vas a sacar");
                         dedosJ1 = Integer.parseInt(dedosTexto);
-                        if (dedosJ1 <= 0 || dedosJ1 >= 10) {
+                        if (dedosJ1 < 0 || dedosJ1 >= 11) {
                             JOptionPane.showMessageDialog(null, "Los dedos de Jugador 1 no son validos\n"
                                     + "(No puedes sacar mas de 10 dedos o menos de 0)");
                         } else {
                             repetirDato = false;
                         }
                     } while (repetirDato);
-                    
+
                     repetirDato = true;
                     do {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador 2, escribe los dedos que vas a sacar");
                         dedosJ2 = Integer.parseInt(dedosTexto);
-                        if (dedosJ2 <= 0 || dedosJ2 >= 10) {
+                        if (dedosJ2 < 0 || dedosJ2 >= 11) {
                             JOptionPane.showMessageDialog(null, "Los dedos de Jugador 2 no son validos\n"
                                     + "(No puedes sacar mas de 10 dedos o menos de 0)");
                         } else {
@@ -147,7 +146,7 @@ public class paresNonesDF {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador, escribe los dedos que vas a sacar");
                         dedosJ1 = Integer.parseInt(dedosTexto);
-                        if (dedosJ1 <= 0 || dedosJ1 >= 10) {
+                        if (dedosJ1 < 0 || dedosJ1 >= 11) {
                             JOptionPane.showMessageDialog(null, "Los dedos no son validos\n"
                                     + "(No puedes sacar mas de 10 dedos o menos de 0)");
                         } else {
