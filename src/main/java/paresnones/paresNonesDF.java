@@ -15,9 +15,8 @@ public class paresNonesDF {
         int totalDedos;
         String paresNonesS, dedosTexto, seleccionRepeticion;
         int seleccion;
-        
 
-        boolean repetirJuego = true, repetirDato = true;
+        boolean repetirJuego = true, repetirDato;
 
         Random nAleatorio = new Random();
 
@@ -78,6 +77,7 @@ public class paresNonesDF {
                     }
 
                     //dowhile para controlar que el jugador no introduzca unos datos erroneos
+                    repetirDato = true;
                     do {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador 1, escribe los dedos que vas a sacar");
@@ -89,8 +89,8 @@ public class paresNonesDF {
                             repetirDato = false;
                         }
                     } while (repetirDato);
+                    
                     repetirDato = true;
-
                     do {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador 2, escribe los dedos que vas a sacar");
@@ -142,6 +142,7 @@ public class paresNonesDF {
                         j1Pares = false;
                     }
 
+                    repetirDato = true;
                     do {
                         dedosTexto = JOptionPane.showInputDialog(null,
                                 "Jugador, escribe los dedos que vas a sacar");
@@ -155,6 +156,7 @@ public class paresNonesDF {
                     } while (repetirDato);
 
                     dedosJ2 = nAleatorio.nextInt(10) + 0;
+                    JOptionPane.showMessageDialog(null, "La maquina saca " + dedosJ2 + " dedo/s");
 
                     totalDedos = dedosJ1 + dedosJ2;
 
