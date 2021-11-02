@@ -10,7 +10,7 @@ public class paresNonesDF {
 
     public static void main(String[] args) {
         int dedosJ1, dedosJ2;
-        boolean j1Pares = true, j2Pares = true;
+        boolean j1Pares = true;
         int paresNones;
         String paresNonesS;
         String dedosTexto;
@@ -25,7 +25,10 @@ public class paresNonesDF {
 
         do {
             int jugadorElegido = jugadorAleatorio.nextInt(2) + 1;
-
+            //Numero aleatorio que escoje un numero aleatorio que sea 1 o 2
+            
+            //El numero se utiliza en el switch para que el jugador elegido 
+            //escoja si quiere pares o nones
             switch (jugadorElegido) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Jugador " + jugadorElegido + " te toca escoger");
@@ -36,11 +39,11 @@ public class paresNonesDF {
                             + "2-. Nones");
                     paresNones = Integer.parseInt(paresNonesS);
 
+                    //En el if else se asignan la eleccion unicamente al jugador 1
+                    //(Si J1 es pares, J2 es nones)
                     if (paresNones == 1) {
                         j1Pares = true;
-                        j2Pares = false;
                     } else {
-                        j2Pares = true;
                         j1Pares = false;
                     }
                     break;
@@ -54,16 +57,17 @@ public class paresNonesDF {
                             + "2-. Nones");
                     paresNones = Integer.parseInt(paresNonesS);
 
+                    //Como se ha visto antes, solo se necesita guardar la seleccion en J1
+                    //incluso aunque sea el j2 al que le ha tocado elegir
                     if (paresNones == 1) {
-                        j2Pares = true;
                         j1Pares = false;
                     } else {
                         j1Pares = true;
-                        j2Pares = false;
                     }
                     break;
             }
-
+            
+            //dowhile para controlar que el jugador no introduzca unos datos erroneos
             do {
                 dedosTexto = JOptionPane.showInputDialog(null,
                         "Jugador 1, escribe los dedos que vas a sacar");
@@ -91,6 +95,7 @@ public class paresNonesDF {
 
             int totalDedos = dedosJ1 + dedosJ2;
 
+            //En la condicion de este ifelse se comprueba si el jugador 
             if (j1Pares == true && totalDedos % 2 == 0) {
                 JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
             } else {
