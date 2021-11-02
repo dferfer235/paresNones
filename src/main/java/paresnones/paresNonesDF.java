@@ -26,7 +26,7 @@ public class paresNonesDF {
         do {
             int jugadorElegido = jugadorAleatorio.nextInt(2) + 1;
             //Numero aleatorio que escoje un numero aleatorio que sea 1 o 2
-            
+
             //El numero se utiliza en el switch para que el jugador elegido 
             //escoja si quiere pares o nones
             switch (jugadorElegido) {
@@ -66,7 +66,7 @@ public class paresNonesDF {
                     }
                     break;
             }
-            
+
             //dowhile para controlar que el jugador no introduzca unos datos erroneos
             do {
                 dedosTexto = JOptionPane.showInputDialog(null,
@@ -95,12 +95,16 @@ public class paresNonesDF {
 
             int totalDedos = dedosJ1 + dedosJ2;
 
-            //En la condicion de este ifelse se comprueba si el jugador 
+            //En la condicion de este ifelse se comprueba si el jugador 1 ha escogido pares
+            //Y si el modulo de la suma total de dedos es 0
             if (j1Pares == true && totalDedos % 2 == 0) {
+                JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
+            } else if (j1Pares == false && totalDedos % 2 != 0) {
                 JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
             } else {
                 JOptionPane.showMessageDialog(null, "!Jugador 2 ha ganado!");
             }
+
             String seleccionRepeticion = JOptionPane.showInputDialog(null,
                     "¿Quieres jugar otra ronda?\n"
                     + "1-. Si\n"
@@ -115,5 +119,4 @@ public class paresNonesDF {
         } while (repetirJuego == true);
 
     }
-
 }
