@@ -4,6 +4,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
+ * https://github.com/dferfer235/paresNones.git
  * @author davidfdez
  */
 public class paresNonesDF {
@@ -103,6 +104,8 @@ public class paresNonesDF {
                     } while (repetirDato);
 
                     totalDedos = dedosJ1 + dedosJ2;
+                    
+                    JOptionPane.showMessageDialog(null, "Un, dos, tres...");
 
                     //En la condicion de este ifelse se comprueba si el jugador 1 ha escogido pares
                     //Y si el modulo de la suma total de dedos es 0
@@ -154,6 +157,8 @@ public class paresNonesDF {
                         }
                     } while (repetirDato);
 
+                    //En lugar de introducir un dato, dejamos que Random nos genere 
+                    //un numero entre 0 y 10, el resto de codigo no necesitan ningun cambio
                     dedosJ2 = nAleatorio.nextInt(10) + 0;
                     JOptionPane.showMessageDialog(null, "La maquina saca " + dedosJ2 + " dedo/s");
 
