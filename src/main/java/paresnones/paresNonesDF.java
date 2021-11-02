@@ -10,7 +10,7 @@ public class paresNonesDF {
 
     public static void main(String[] args) {
         int dedosJ1, dedosJ2;
-        boolean j1Pares, j2Pares;
+        boolean j1Pares = true, j2Pares = true;
         int paresNones;
         String paresNonesS;
 
@@ -40,6 +40,7 @@ public class paresNonesDF {
                     j1Pares = false;
                 }
                 break;
+
             case 2:
                 JOptionPane.showMessageDialog(null, "Jugador " + jugadorElegido + " te toca escoger");
 
@@ -66,6 +67,14 @@ public class paresNonesDF {
         dedosTexto = JOptionPane.showInputDialog(null,
                 "Jugador 2, escribe los dedos que vas a sacar");
         dedosJ2 = Integer.parseInt(dedosTexto);
+
+        int totalDedos = dedosJ1 + dedosJ2;
+
+        if (j1Pares == true && totalDedos % 2 == 0) {
+            JOptionPane.showMessageDialog(null, "!Jugador 1 ha ganado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "!Jugador 2 ha ganado!");
+        }
 
     }
 
