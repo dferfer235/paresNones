@@ -5,30 +5,41 @@ import javax.swing.JOptionPane;
 
 /**
  * https://github.com/dferfer235/paresNones.git
+ *
  * @author davidfdez
  */
-public class paresNonesDF {
+public class ParesNonesDF {
 
     public static void main(String[] args) {
-        int dedosJ1, dedosJ2;
+        int dedosJ1 = 0, dedosJ2 = 0;
         boolean j1Pares = true;
-        int paresNones;
+        int paresNones = 0;
         int totalDedos;
         String paresNonesS, dedosTexto, seleccionRepeticion;
-        int seleccion;
+        int seleccionJugador = 0;
+        int seleccion = 0;
 
-        boolean repetirJuego = true, repetirDato;
+        boolean repetirJuego = true, repetirDato = true;
 
         Random nAleatorio = new Random();
 
         System.out.println("Bienvenido a Pares o Nones");
 
         do {
-            String seleccionTexto = JOptionPane.showInputDialog(null,
-                    "¿Como deseas jugar?\n"
-                    + "1-. Jugar contra otro jugador\n"
-                    + "2-. Jugar contra la maquina");
-            int seleccionJugador = Integer.parseInt(seleccionTexto);
+            repetirDato = true;
+            do {
+                try {
+                    String seleccionTexto = JOptionPane.showInputDialog(null,
+                            "¿Como deseas jugar?\n"
+                            + "1-. Jugar contra otro jugador\n"
+                            + "2-. Jugar contra la maquina");
+                    seleccionJugador = Integer.parseInt(seleccionTexto);
+                    repetirDato = false;
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                }
+            } while (repetirDato);
+
             switch (seleccionJugador) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Un jugador aleatorio tendra que elegir pares o nones");
@@ -42,11 +53,20 @@ public class paresNonesDF {
                         case 1:
                             JOptionPane.showMessageDialog(null, "Jugador " + jugadorElegido + " te toca escoger");
 
-                            paresNonesS = JOptionPane.showInputDialog(null,
-                                    "Jugador " + jugadorElegido + " ¿Pares o nones?\n"
-                                    + "1-. Pares\n"
-                                    + "2-. Nones");
-                            paresNones = Integer.parseInt(paresNonesS);
+                            repetirDato = true;
+                            do {
+                                try {
+                                    paresNonesS = JOptionPane.showInputDialog(null,
+                                            "Jugador " + jugadorElegido + " ¿Pares o nones?\n"
+                                            + "1-. Pares\n"
+                                            + "2-. Nones\n"
+                                            + "(Cualquier otro numero se considera como Nones)");
+                                    paresNones = Integer.parseInt(paresNonesS);
+                                    repetirDato = false;
+                                } catch (NumberFormatException nfe) {
+                                    JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                                }
+                            } while (repetirDato);
 
                             //En el if else se asignan la eleccion unicamente al jugador 1
                             //(Si J1 es pares, J2 es nones)
@@ -58,13 +78,19 @@ public class paresNonesDF {
                             break;
 
                         case 2:
-                            JOptionPane.showMessageDialog(null, "Jugador " + jugadorElegido + " te toca escoger");
-
-                            paresNonesS = JOptionPane.showInputDialog(null,
-                                    "Jugador " + jugadorElegido + " ¿Pares o nones?\n"
-                                    + "1-. Pares\n"
-                                    + "2-. Nones");
-                            paresNones = Integer.parseInt(paresNonesS);
+                            do {
+                                try {
+                                    paresNonesS = JOptionPane.showInputDialog(null,
+                                            "Jugador " + jugadorElegido + " ¿Pares o nones?\n"
+                                            + "1-. Pares\n"
+                                            + "2-. Nones\n"
+                                            + "(Cualquier otro numero se considera como Nones)");
+                                    paresNones = Integer.parseInt(paresNonesS);
+                                    repetirDato = false;
+                                } catch (NumberFormatException nfe) {
+                                    JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                                }
+                            } while (repetirDato);
 
                             //Como se ha visto antes, solo se necesita guardar la seleccion en J1
                             //incluso aunque sea el j2 al que le ha tocado elegir
@@ -79,32 +105,42 @@ public class paresNonesDF {
                     //dowhile para controlar que el jugador no introduzca unos datos erroneos
                     repetirDato = true;
                     do {
-                        dedosTexto = JOptionPane.showInputDialog(null,
-                                "Jugador 1, escribe los dedos que vas a sacar");
-                        dedosJ1 = Integer.parseInt(dedosTexto);
-                        if (dedosJ1 < 0 || dedosJ1 >= 11) {
-                            JOptionPane.showMessageDialog(null, "Los dedos de Jugador 1 no son validos\n"
-                                    + "(No puedes sacar mas de 10 dedos o menos de 0)");
-                        } else {
-                            repetirDato = false;
+                        try {
+                            dedosTexto = JOptionPane.showInputDialog(null,
+                                    "Jugador 1, escribe los dedos que vas a sacar");
+                            dedosJ1 = Integer.parseInt(dedosTexto);
+                            if (dedosJ1 < 0 || dedosJ1 >= 11) {
+                                JOptionPane.showMessageDialog(null, "Los dedos de Jugador 1 no son validos\n"
+                                        + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                            } else {
+                                repetirDato = false;
+                            }
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
                         }
+
                     } while (repetirDato);
 
                     repetirDato = true;
                     do {
-                        dedosTexto = JOptionPane.showInputDialog(null,
-                                "Jugador 2, escribe los dedos que vas a sacar");
-                        dedosJ2 = Integer.parseInt(dedosTexto);
-                        if (dedosJ2 < 0 || dedosJ2 >= 11) {
-                            JOptionPane.showMessageDialog(null, "Los dedos de Jugador 2 no son validos\n"
-                                    + "(No puedes sacar mas de 10 dedos o menos de 0)");
-                        } else {
-                            repetirDato = false;
+                        try {
+                            dedosTexto = JOptionPane.showInputDialog(null,
+                                    "Jugador 2, escribe los dedos que vas a sacar");
+                            dedosJ2 = Integer.parseInt(dedosTexto);
+                            if (dedosJ2 < 0 || dedosJ2 >= 11) {
+                                JOptionPane.showMessageDialog(null, "Los dedos de Jugador 2 no son validos\n"
+                                        + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                            } else {
+                                repetirDato = false;
+                            }
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
                         }
+
                     } while (repetirDato);
 
                     totalDedos = dedosJ1 + dedosJ2;
-                    
+
                     JOptionPane.showMessageDialog(null, "Un, dos, tres...");
 
                     //En la condicion de este ifelse se comprueba si el jugador 1 ha escogido pares
@@ -116,12 +152,19 @@ public class paresNonesDF {
                     } else {
                         JOptionPane.showMessageDialog(null, "!Jugador 2 ha ganado!");
                     }
-
-                    seleccionRepeticion = JOptionPane.showInputDialog(null,
-                            "¿Quieres jugar otra ronda?\n"
-                            + "1-. Si\n"
-                            + "2-. No");
-                    seleccion = Integer.parseInt(seleccionRepeticion);
+                    repetirDato = true;
+                    do {
+                        try {
+                            seleccionRepeticion = JOptionPane.showInputDialog(null,
+                                    "¿Quieres jugar otra ronda?\n"
+                                    + "1-. Si\n"
+                                    + "2-. No");
+                            seleccion = Integer.parseInt(seleccionRepeticion);
+                            repetirDato = false;
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                        }
+                    } while (repetirDato);
 
                     if (seleccion == 2) {
                         repetirJuego = false;
@@ -132,11 +175,20 @@ public class paresNonesDF {
                 case 2:
                     JOptionPane.showMessageDialog(null, "Jugador, te toca escoger");
 
-                    paresNonesS = JOptionPane.showInputDialog(null,
-                            "¿Pares o nones?\n"
-                            + "1-. Pares\n"
-                            + "2-. Nones");
-                    paresNones = Integer.parseInt(paresNonesS);
+                    repetirDato = true;
+                    do {
+                        try {
+                            paresNonesS = JOptionPane.showInputDialog(null,
+                                    "Jugador, ¿Pares o nones?\n"
+                                    + "1-. Pares\n"
+                                    + "2-. Nones\n"
+                                    + "(Cualquier otro numero se considera como Nones)");
+                            paresNones = Integer.parseInt(paresNonesS);
+                            repetirDato = false;
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                        }
+                    } while (repetirDato);
 
                     if (paresNones == 1) {
                         j1Pares = true;
@@ -146,14 +198,18 @@ public class paresNonesDF {
 
                     repetirDato = true;
                     do {
-                        dedosTexto = JOptionPane.showInputDialog(null,
-                                "Jugador, escribe los dedos que vas a sacar");
-                        dedosJ1 = Integer.parseInt(dedosTexto);
-                        if (dedosJ1 < 0 || dedosJ1 >= 11) {
-                            JOptionPane.showMessageDialog(null, "Los dedos no son validos\n"
-                                    + "(No puedes sacar mas de 10 dedos o menos de 0)");
-                        } else {
-                            repetirDato = false;
+                        try {
+                            dedosTexto = JOptionPane.showInputDialog(null,
+                                    "Jugador, escribe los dedos que vas a sacar");
+                            dedosJ1 = Integer.parseInt(dedosTexto);
+                            if (dedosJ1 < 0 || dedosJ1 >= 11) {
+                                JOptionPane.showMessageDialog(null, "Los dedos de Jugador 1 no son validos\n"
+                                        + "(No puedes sacar mas de 10 dedos o menos de 0)");
+                            } else {
+                                repetirDato = false;
+                            }
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
                         }
                     } while (repetirDato);
 
@@ -172,11 +228,19 @@ public class paresNonesDF {
                         JOptionPane.showMessageDialog(null, "!La maquina ha ganado!");
                     }
 
-                    seleccionRepeticion = JOptionPane.showInputDialog(null,
-                            "¿Quieres jugar otra ronda?\n"
-                            + "1-. Si\n"
-                            + "2-. No");
-                    seleccion = Integer.parseInt(seleccionRepeticion);
+                    repetirDato = true;
+                    do {
+                        try {
+                            seleccionRepeticion = JOptionPane.showInputDialog(null,
+                                    "¿Quieres jugar otra ronda?\n"
+                                    + "1-. Si\n"
+                                    + "2-. No");
+                            seleccion = Integer.parseInt(seleccionRepeticion);
+                            repetirDato = false;
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null, "No se ha introducido un numero");
+                        }
+                    } while (repetirDato);
 
                     if (seleccion == 2) {
                         repetirJuego = false;
